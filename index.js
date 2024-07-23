@@ -19,12 +19,10 @@ connectDB();
 const app = express();
 const port = 3000;
 app.use(express.json());
-app.use(cors(
-  {
-    origin: "http://localhost:1420",
-    methods: "GET,POST",
-  }
-));
+app.use(cors());
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.use("/api/copy-event", copyEvent);
 app.use("/api/paste-event", pasteEvent);
