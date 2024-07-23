@@ -6,6 +6,7 @@ const encrypt = require("../middleware/encrypt");
 router.use(cors());
 router.use(express.json());
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const { text, id } = req.body;
   if (!text || !id) {
     return res.status(400).json({ message: "Invalid request" });
