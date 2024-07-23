@@ -12,6 +12,6 @@ const decrypt = (encryptedText) => {
   return decrypted.toString();
 };
 
-console.log(decrypt("030f8e0e6f6798edb8f6b23163df5639"))
+
 
 module.exports = decrypt;
