@@ -4,7 +4,11 @@ const crypto = require('crypto');
 const router = express.Router();
 const Clipboard = require('../models/clipboard');
 const decrypt = require('../middleware/decrypt');
-router.use(cors());
+router.use(cors(
+    {
+        origin: "*",
+    }
+));
 router.use(express.json());
 
 router.post('/', async (req, res) => {
