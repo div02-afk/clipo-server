@@ -8,8 +8,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-    });
+    await mongoose.connect(process.env.MONGODB_URI, {});
     console.log("MongoDB connected");
   } catch (err) {
     console.log(err);
@@ -19,10 +18,13 @@ connectDB();
 const app = express();
 const port = 3000;
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // allow to server to accept request from different origin
+  })
+);
 
 // Handle preflight requests
-app.options('*', cors());
 
 app.use("/api/copy-event", copyEvent);
 app.use("/api/paste-event", pasteEvent);
