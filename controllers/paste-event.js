@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     }
     if (text != null) {
       const decrypted = decrypt(text);
-      res.json({ text: decrypted }).status(200);
+      res.json({ text: decrypted,redis:true }).status(200);
       return;
     }
   });
