@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ message: "Invalid request" });
   }
   const encrypted = encrypt(text);
-  redis.set(id, encrypted);
+  await redis.set(id, encrypted);
   const doesExist = await Clipboard.exists({ id: id });
   if (doesExist) {
     const clipboard = await Clipboard.findOne({ id: id });

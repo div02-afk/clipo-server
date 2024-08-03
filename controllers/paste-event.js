@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
   const doesExist = await Clipboard.exists({ id: id });
   if (doesExist) {
     const clipboard = await Clipboard.findOne({ id: id });
-    redis.set(id, clipboard.text);
+    await redis.set(id, clipboard.text);
     const decrypted = decrypt(clipboard.text);
     res.json({ text: decrypted,redis:"miss" }).status(200);
   } else {
