@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
   if (!id) {
     return res.status(400).json({ message: "Invalid request" });
   }
-  redis.get(id, async (error, text) => {
+  await redis.get(id, async (error, text) => {
     if (error) {
       return res.status(400).json({ message: "Invalid request" });
     }
