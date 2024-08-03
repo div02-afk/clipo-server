@@ -1,5 +1,5 @@
 {
-  "name": "one-clipboard",
+  "name": "clipo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,6 +19,7 @@
     "express": "^4.19.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.1",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "redis": "^4.7.0"
   }
 }

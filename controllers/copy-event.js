@@ -3,20 +3,21 @@ const cors = require("cors");
 const router = express.Router();
 const Clipboard = require("../models/clipboard");
 const encrypt = require("../middleware/encrypt");
-router.use(cors(
-  {
+const redis = require("../middleware/redis");
+router.use(
+  cors({
     origin: "*",
-  }
-));
+  })
+);
 router.use(express.json());
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { text, id } = req.body;
   if (!text || !id) {
     return res.status(400).json({ message: "Invalid request" });
   }
-  
   const encrypted = encrypt(text);
+  redis.set(id, encrypted);
   const doesExist = await Clipboard.exists({ id: id });
   if (doesExist) {
     const clipboard = await Clipboard.findOne({ id: id });
