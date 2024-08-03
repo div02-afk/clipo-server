@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     }
     if (text != null) {
       const decrypted = decrypt(text);
-      res.json({ text: decrypted,redis:true }).status(200);
+      res.json({ text: decrypted,redis:"hit" }).status(200);
       return;
     }
   });
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
     const clipboard = await Clipboard.findOne({ id: id });
     redis.set(id, clipboard.text);
     const decrypted = decrypt(clipboard.text);
-    res.json({ text: decrypted }).status(200);
+    res.json({ text: decrypted,redis:"miss" }).status(200);
   } else {
     res.json({ message: "No event found" }).status(404);
   }
