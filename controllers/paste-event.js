@@ -18,16 +18,12 @@ router.post("/", async (req, res) => {
   if (!id) {
     return res.status(400).json({ message: "Invalid request" });
   }
-  await redis.get(id, async (error, text) => {
-    if (error) {
-      return res.status(400).json({ message: "Invalid request" });
-    }
-    if (text != null) {
-      const decrypted = decrypt(text);
-      res.json({ text: decrypted,redis:"hit" }).status(200);
-      return;
-    }
-  });
+  const result = await redis.get(id);
+  if(result){
+    const decrypted = decrypt(result);
+    res.json({ text: decrypted,redis:"hit" }).status(200);
+    return;
+  }
   const doesExist = await Clipboard.exists({ id: id });
   if (doesExist) {
     const clipboard = await Clipboard.findOne({ id: id });
