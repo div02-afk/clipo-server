@@ -8,6 +8,7 @@ The Clipo Server is the backend component of the Clipo clipboard syncing applica
 - **One-Time ID Access**: Provides access to clipboard contents using a secure one-time ID.
 - **API Endpoints**: Offers RESTful API endpoints for clipboard operations.
 - **Node.js Backend**: Built using Node.js for scalability and performance.
+- **Redis Caching**: Uses Redis for caching clipboard contents to enhance speed and reduce latency.
 
 
 
@@ -15,7 +16,7 @@ The Clipo Server is the backend component of the Clipo clipboard syncing applica
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/div02-afk/clipo-server.git
+    git clone https://github.com/your-username/clipo-server.git
     cd clipo-server
     ```
 
@@ -28,6 +29,7 @@ The Clipo Server is the backend component of the Clipo clipboard syncing applica
     Create a `.env` file in the root directory and add the following:
     ```env
     MONGODB_URI=your_mongodb_connection_string
+    REDIS_URI=your_redis_connection_string
     ENCRYPTION_KEY=your_encryption_key
     ENCRYPTION_VI = your_encryption_vi
     ```
